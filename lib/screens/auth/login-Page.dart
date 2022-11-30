@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhm/screens/auth/controllers/auth_controller.dart';
+import 'package:mhm/screens/auth/registatn.dart';
 import 'package:mhm/utils/constants/style.dart';
 import 'package:mhm/utils/my_textField.dart';
 import '../../utils/constants/color.dart';
@@ -30,8 +31,11 @@ class LogInPage extends StatelessWidget {
                     color: Colors.amber,
                   ))
                 : Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: Get.height * 0.16,
+                      ),
                       Card(
                         elevation: 15,
                         shape: RoundedRectangleBorder(
@@ -45,6 +49,9 @@ class LogInPage extends StatelessWidget {
                             width: 100,
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.16,
                       ),
                       Column(
                         children: [
@@ -61,6 +68,9 @@ class LogInPage extends StatelessWidget {
                             padding: true,
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.1,
                       ),
                       InkWell(
                         onTap: () {
@@ -90,7 +100,25 @@ class LogInPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t have an account?',
+                            style: smallNormal,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => RegistationPage());
+                            },
+                            child: Text(
+                              'Sign Up',
+                              style: smallNormal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
           );

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhm/core/network_helper/network_helper.dart';
+import 'package:mhm/screens/auth/login-Page.dart';
 import 'package:mhm/screens/forgot_password/views/send_otp.dart';
 import 'package:mhm/screens/product/product_page.dart';
 import '../screens/donate/donate_page.dart';
@@ -119,6 +120,9 @@ class MainDrawer extends StatelessWidget {
             Card(
               elevation: 3,
               child: ListTile(
+                onTap: () {
+                  Get.to(() => LogInPage());
+                },
                 title: Text('LogOut'),
                 leading: Icon(Icons.logout),
               ),

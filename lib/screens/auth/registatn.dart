@@ -87,7 +87,25 @@ class RegistationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Already have an account?',
+                                    style: smallNormal,
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.to(() => LogInPage());
+                                    },
+                                    child: Text(
+                                      'Sign In',
+                                      style: smallNormal,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
