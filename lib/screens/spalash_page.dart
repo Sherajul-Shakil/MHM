@@ -1,6 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhm/core/network_helper/network_helper.dart';
+import 'package:mhm/screens/auth/login-Page.dart';
+import 'package:mhm/screens/bottom_nav_page.dart';
 import 'package:mhm/utils/constants/color.dart';
 import 'auth/registatn.dart';
 
@@ -12,10 +16,15 @@ class SpalashPage extends StatefulWidget {
 }
 
 class _SpalashPageState extends State<SpalashPage> {
+  NetworkHelper networkHelper = Get.put(NetworkHelper());
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(RegistationPage.routeName);
+      networkHelper.userName.isNotEmpty
+          ? Get.offAll(() => ShowBottomNavScreen())
+          : Get.offAll(() => LogInPage());
+
+      // Navigator.of(context).pushReplacementNamed(RegistationPage.routeName);
     });
     super.initState();
   }

@@ -1,11 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, must_be_immutable, unused_local_variable, unnecessary_null_comparison, prefer_if_null_operators
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhm/core/network_helper/network_helper.dart';
 import 'package:mhm/screens/product/product_page.dart';
 import '../screens/donate/donate_page.dart';
 import '../screens/donateList/donate_list.dart';
 
 class MainDrawer extends StatelessWidget {
+  NetworkHelper networkHelper = Get.put(NetworkHelper());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +40,16 @@ class MainDrawer extends StatelessWidget {
                         width: 130,
                         color: Colors.blue,
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '${networkHelper.userName}',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black),
                     ),
                   ],
                 ),
