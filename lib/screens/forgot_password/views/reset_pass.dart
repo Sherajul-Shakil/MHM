@@ -10,7 +10,7 @@ import 'package:mhm/utils/constants/dimsion.dart';
 import 'package:mhm/utils/constants/style.dart';
 import 'package:mhm/utils/my_textField.dart';
 
-class SendOtp extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
   // final emailPhoeControlle = TextEditingController();
   // final passwordControlle = TextEditingController();
 
@@ -59,23 +59,32 @@ class SendOtp extends StatelessWidget {
                               elevation: true,
                               padding: true,
                             ),
-                            // MyTextField(
-                            //   controller: controller.passwordControlle,
-                            //   hintText: 'Pssword',
-                            //   elevation: true,
-                            //   padding: true,
-                            // ),
+                            MyTextField(
+                              controller: controller.passController,
+                              hintText: 'New Password',
+                              elevation: true,
+                              padding: true,
+                              isPassword: true,
+                            ),
+                            MyTextField(
+                              controller: controller.conPassController,
+                              hintText: 'confirm Password',
+                              elevation: true,
+                              padding: true,
+                              isPassword: true,
+                            ),
                           ],
                         ),
                         InkWell(
                           onTap: () {
-                            if (controller.emailControlle.text.isNotEmpty) {
-                              // controller.sendOtp();
-                              Get.to(() => VarifyOtp());
+                            if (controller.emailControlle.text.isNotEmpty &&
+                                controller.passController.text.isNotEmpty &&
+                                controller.conPassController.text.isNotEmpty) {
+                              controller.resetPassword();
                             } else {
                               Get.snackbar(
                                 "Error",
-                                "Please fill email field",
+                                "Please fill all the field",
                                 snackPosition: SnackPosition.BOTTOM,
                                 backgroundColor: Colors.red,
                               );

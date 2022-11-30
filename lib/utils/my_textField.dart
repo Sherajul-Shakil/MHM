@@ -13,6 +13,7 @@ class MyTextField extends StatelessWidget {
   int? maxLine;
   bool padding;
   bool elevation;
+  bool? isPassword;
 
   MyTextField({
     required this.controller,
@@ -22,15 +23,22 @@ class MyTextField extends StatelessWidget {
     this.maxLine = 1,
     required this.elevation,
     required this.padding,
+    this.isPassword,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ? EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_SMALL) : EdgeInsets.all(0),
+      padding: padding
+          ? EdgeInsets.only(
+              left: Dimensions.PADDING_SIZE_DEFAULT,
+              right: Dimensions.PADDING_SIZE_DEFAULT,
+              bottom: Dimensions.PADDING_SIZE_SMALL)
+          : EdgeInsets.all(0),
       child: Card(
         elevation: elevation ? 15 : 2,
         child: TextFormField(
+          obscureText: isPassword ?? false,
           maxLines: maxLine,
           keyboardType: keyBordType,
           controller: controller,
@@ -42,7 +50,8 @@ class MyTextField extends StatelessWidget {
             contentPadding: EdgeInsets.only(left: 10),
             focusColor: Colors.white,
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            hintStyle:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
             ),

@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhm/screens/auth/controllers/auth_controller.dart';
 import 'package:mhm/screens/forgot_password/controllers/forgot_pass_con.dart';
-import 'package:mhm/screens/forgot_password/views/varify_otp.dart';
+import 'package:mhm/screens/forgot_password/views/reset_pass.dart';
 import 'package:mhm/utils/constants/color.dart';
 import 'package:mhm/utils/constants/dimsion.dart';
 import 'package:mhm/utils/constants/style.dart';
 import 'package:mhm/utils/my_textField.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 
-class SendOtp extends StatelessWidget {
+class VarifyOtp extends StatelessWidget {
   // final emailPhoeControlle = TextEditingController();
   // final passwordControlle = TextEditingController();
 
@@ -53,29 +55,43 @@ class SendOtp extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            MyTextField(
-                              controller: controller.emailControlle,
-                              hintText: 'Email',
-                              elevation: true,
-                              padding: true,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              child: OTPTextField(
+                                  // controller: authController.otpController,
+                                  length: 5,
+                                  width: MediaQuery.of(context).size.width,
+                                  textFieldAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  fieldWidth: 45,
+                                  fieldStyle: FieldStyle.box,
+                                  outlineBorderRadius: 15,
+                                  style: TextStyle(fontSize: 17),
+                                  onChanged: (pin) {
+                                    controller.otpValue.value = pin;
+                                    print("Changed: " +
+                                        controller.otpValue.value);
+                                  },
+                                  onCompleted: (pin) {
+                                    // print("Completed: " + pin);
+                                  }),
                             ),
-                            // MyTextField(
-                            //   controller: controller.passwordControlle,
-                            //   hintText: 'Pssword',
-                            //   elevation: true,
-                            //   padding: true,
-                            // ),
                           ],
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.03,
                         ),
                         InkWell(
                           onTap: () {
-                            if (controller.emailControlle.text.isNotEmpty) {
-                              // controller.sendOtp();
-                              Get.to(() => VarifyOtp());
+                            if (controller.emailControlle.text.isNotEmpty &&
+                                controller.otpValue.value.isNotEmpty) {
+                              // controller.varifyOtp();
+                              Get.to(() => ResetPassword());
                             } else {
                               Get.snackbar(
                                 "Error",
-                                "Please fill email field",
+                                "Please fill all the field",
                                 snackPosition: SnackPosition.BOTTOM,
                                 backgroundColor: Colors.red,
                               );

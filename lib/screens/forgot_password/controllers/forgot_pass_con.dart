@@ -13,6 +13,8 @@ class ForgotController extends GetxController {
   NetworkHelper networkHelper = Get.put(NetworkHelper());
 
   final emailControlle = TextEditingController();
+  final passController = TextEditingController();
+  final conPassController = TextEditingController();
   OtpFieldController otpController = OtpFieldController();
 
   var isLoading = false.obs;
@@ -76,70 +78,70 @@ class ForgotController extends GetxController {
     }
   }
 
-  // //Varify OTP
-  // Future<void> varifyOtp() async {
-  //   try {
-  //     changeLoading(true);
-  //     var uri = Uri.parse(AppUrl.varifyOtp);
+  //Varify OTP
+  Future<void> varifyOtp() async {
+    try {
+      changeLoading(true);
+      var uri = Uri.parse(AppUrl.varifyOtp);
 
-  //     Map<String, String> data = {
-  //       "email": emailController.text,
-  //       "otp": otpValue.toString(),
-  //     };
+      Map<String, String> data = {
+        "email": emailControlle.text,
+        "otp": otpValue.toString(),
+      };
 
-  //     final response = await http.post(uri,
-  //         body: data, headers: networkHelper.getPostHeaders());
+      final response = await http.post(uri,
+          body: data, headers: networkHelper.getPostHeaders());
 
-  //     if (response.statusCode == 200) {
-  //       changeLoading(false);
-  //       Get.snackbar("Success", "OTP Varification Successful");
-  //       Get.to(() => ResetPassword());
-  //     } else {
-  //       changeLoading(false);
-  //       Get.defaultDialog(
-  //         title: "Error Message",
-  //         content: const Text("OTP does not match"),
-  //       );
-  //     }
-  //   } catch (e) {
-  //     changeLoading(false);
-  //     Get.snackbar("Error", e.toString());
-  //     // print("Print Error $e");
-  //   }
-  // }
+      if (response.statusCode == 200) {
+        changeLoading(false);
+        Get.snackbar("Success", "OTP Varification Successful");
+        // Get.to(() => ResetPassword());
+      } else {
+        changeLoading(false);
+        Get.defaultDialog(
+          title: "Error Message",
+          content: const Text("OTP does not match"),
+        );
+      }
+    } catch (e) {
+      changeLoading(false);
+      Get.snackbar("Error", e.toString());
+      // print("Print Error $e");
+    }
+  }
 
-  // //Reset Password
-  // Future<void> resetPassword() async {
-  //   try {
-  //     changeLoading(true);
-  //     var uri = Uri.parse(AppUrl.resetPassword);
+  //Reset Password
+  Future<void> resetPassword() async {
+    try {
+      changeLoading(true);
+      var uri = Uri.parse(AppUrl.resetPassword);
 
-  //     Map<String, String> data = {
-  //       "email": emailController.text,
-  //       "new_password": passController.text,
-  //       "confirm_password": conPassController.text,
-  //     };
+      Map<String, String> data = {
+        "email": emailControlle.text,
+        "new_password": passController.text,
+        "confirm_password": conPassController.text,
+      };
 
-  //     final response = await http.post(uri,
-  //         body: data, headers: networkHelper.getPostHeaders());
+      final response = await http.post(uri,
+          body: data, headers: networkHelper.getPostHeaders());
 
-  //     if (response.statusCode == 200) {
-  //       changeLoading(false);
-  //       Get.snackbar("Success", "Password Reset Successful");
-  //       Get.offAll(() => NavigationPage());
-  //     } else {
-  //       changeLoading(false);
-  //       Get.defaultDialog(
-  //         title: "Error Message",
-  //         content: const Text("Error has occured"),
-  //       );
-  //     }
-  //   } catch (e) {
-  //     changeLoading(false);
-  //     Get.snackbar("Error", e.toString());
-  //     // print("Print Error $e");
-  //   }
-  // }
+      if (response.statusCode == 200) {
+        changeLoading(false);
+        Get.snackbar("Success", "Password Reset Successful");
+        Get.offAll(() => ShowBottomNavScreen());
+      } else {
+        changeLoading(false);
+        Get.defaultDialog(
+          title: "Error Message",
+          content: const Text("Error has occured"),
+        );
+      }
+    } catch (e) {
+      changeLoading(false);
+      Get.snackbar("Error", e.toString());
+      // print("Print Error $e");
+    }
+  }
 
   // //Sign in with Google
   // Future<UserCredential> signInWithGoogle() async {
