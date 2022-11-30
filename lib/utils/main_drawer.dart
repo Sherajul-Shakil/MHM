@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mhm/core/network_helper/network_helper.dart';
+import 'package:mhm/screens/forgot_password/views/send_otp.dart';
 import 'package:mhm/screens/product/product_page.dart';
 import '../screens/donate/donate_page.dart';
 import '../screens/donateList/donate_list.dart';
@@ -103,6 +104,16 @@ class MainDrawer extends StatelessWidget {
               child: ListTile(
                 title: Text('Monthly User'),
                 leading: Icon(Icons.person),
+              ),
+            ),
+            Card(
+              elevation: 3,
+              child: ListTile(
+                onTap: () {
+                  Get.to(() => SendOtp());
+                },
+                title: Text('Forgot Password'),
+                leading: Icon(Icons.password_outlined),
               ),
             ),
             Card(
