@@ -16,7 +16,7 @@ class AppUrl {
   static const String homeSlider = "${baseUrl}slider/list";
   static const String categoryList = "${baseUrl}category/list";
   static const String categoryWithProduct = "${baseUrl}category-product/list";
-  static const String productDetails = "${baseUrl}product/details/";
+  static const String productReview = "${baseUrl}product/review/";
 
   //Top Up
   static const String mobileRecharge = "${baseUrl}product/list?category_id=2";
@@ -28,4 +28,7 @@ class AppUrl {
   //user
   static const String userDetails = "${baseUrl}account/details";
   static const String updateProfile = "${baseUrl}account/update";
+
+  //Add review
+  static const String addReview = "${baseUrl}product/review";
 }

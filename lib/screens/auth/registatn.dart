@@ -70,8 +70,26 @@ class RegistationPage extends StatelessWidget {
                                 padding: true,
                               ),
                               InkWell(
-                                onTap: (() => Navigator.of(context)
-                                    .pushNamed(LogInPage.routeName)),
+                                onTap: () {
+                                  if (authController
+                                          .emailControlle.text.isNotEmpty &&
+                                      authController
+                                          .passwordControlle.text.isNotEmpty &&
+                                      authController
+                                          .nameControlle.text.isNotEmpty &&
+                                      authController
+                                          .phoneControlle.text.isNotEmpty) {
+                                    // authController.login();
+                                    Get.to(() => LogInPage());
+                                  } else {
+                                    Get.snackbar(
+                                      "Error",
+                                      "Please fill email field",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      backgroundColor: Colors.red,
+                                    );
+                                  }
+                                },
                                 child: Card(
                                   elevation: 15,
                                   shape: RoundedRectangleBorder(

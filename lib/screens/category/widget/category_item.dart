@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:mhm/screens/category/constant/category_model.dart';
+import 'package:mhm/screens/category/models/product_category.dart';
 import '../../../utils/constants/color.dart';
 import '../../../utils/constants/dimsion.dart';
 import '../../../utils/constants/style.dart';
 import '../../productList/product_list_page.dart';
 
 class CategoryLisItem extends StatelessWidget {
-  CategoryModel catM;
+  ProductCatData catM;
 
   CategoryLisItem({
     required this.catM,
@@ -30,11 +31,16 @@ class CategoryLisItem extends StatelessWidget {
                 horizontal: Dimensions.PADDING_SIZE_DEFAULT),
             child: Row(
               children: [
-                Expanded(child: Text(catM.catName, style: mediamBoldW)),
-                Icon(
-                  catM.icon,
-                  color: Colors.white,
+                Expanded(child: Text(catM.name!, style: mediamBoldW)),
+                Image.network(
+                  catM.imageUrl!,
+                  height: 50,
+                  width: 50,
                 ),
+                // Icon(
+                //   catM.icon,
+                //   color: Colors.white,
+                // ),
               ],
             ),
           ),

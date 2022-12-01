@@ -1,11 +1,15 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mhm/screens/category/controllers/product_con.dart';
+import 'package:mhm/screens/productDetails/review_page.dart';
 import 'package:mhm/utils/constants/color.dart';
 import 'package:mhm/utils/constants/style.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   static const routeName = 'product-details';
+  ProductController productCon = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -73,20 +77,26 @@ class ProductDetailsPage extends StatelessWidget {
                           color: Colors.black38,
                         ),
                         SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.message,
-                              color: Colors.black54,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              '64 comments',
-                              style: mediamNormal,
-                            ),
-                            Spacer(),
-                            Icon(Icons.arrow_right)
-                          ],
+                        InkWell(
+                          onTap: () {
+                            productCon.getProductReview(1);
+                            Get.to(() => ReviewPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.message,
+                                color: Colors.black54,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                '64 comments',
+                                style: mediamNormal,
+                              ),
+                              Spacer(),
+                              Icon(Icons.arrow_right)
+                            ],
+                          ),
                         ),
                         SizedBox(height: 5),
                         Divider(color: Colors.black38),
